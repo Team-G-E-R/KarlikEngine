@@ -16,18 +16,22 @@ void OpenGLGraphics::Startup(SDL_Window* window)
 		return;
 	}
 
-	if (!SDL_GL_MakeCurrent(window, context)) {
+	if (SDL_GL_MakeCurrent(window, context) != 0) {
 		SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not make OpenGL context current\n");
 		return;
 	}
 
-	glewInit();
+	glewExperimental = GL_TRUE; // Needed for modern OpenGL
+	if (glewInit() != GLEW_OK) {
+		SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Failed to initialize GLEW\n");
+		return;
+	}
 	
 	printf("OpenGL version: %s\n", glGetString(GL_VERSION));
 	printf("GLSL version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
-	// 60 fps?
-	//SDL_GL_SetSwapInterval(1);
+	// 0 = disable VSync, 1 = enable VSync, -1 = late swap tearing if supported
+	SDL_GL_SetSwapInterval(0);
 }
 
 void OpenGLGraphics::Render()

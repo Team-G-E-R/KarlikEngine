@@ -14,7 +14,12 @@ target_precompile_headers(KarlikEngineCore PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/
 
 target_compile_definitions(KarlikEngineCore PRIVATE GLEW_STATIC)
 
-target_link_libraries(KarlikEngineCore PUBLIC SDL3::SDL3)
+find_package(SDL2 CONFIG REQUIRED)
+target_link_libraries(KarlikEngineCore
+    PRIVATE
+    $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
+    $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
+)
 
 # OpenGL
 find_package(OpenGL REQUIRED)
