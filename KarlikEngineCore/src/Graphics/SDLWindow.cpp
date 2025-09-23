@@ -11,7 +11,7 @@ void SDLWindow::Initialize(std::string_view name, int w, int h)
 
 	window = SDL_CreateWindow(name.data(), SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, w, h, graphics->GetWindowFlag());
-	if (window == NULL) {
+	if (window == nullptr) {
 		SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
 		return;
 	}
