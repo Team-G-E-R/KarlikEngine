@@ -16,7 +16,7 @@ void OpenGLGraphics::Startup(SDL_Window* window)
 		return;
 	}
 
-	if (SDL_GL_MakeCurrent(window, context) != 0) {
+	if (!SDL_GL_MakeCurrent(window, context)) {
 		SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not make OpenGL context current\n");
 		return;
 	}
