@@ -8,4 +8,5 @@ int main(int argc, char* argv[])
 	std::unique_ptr<SDLWindow> window = std::make_unique<SDLWindow>(std::move(graphics));
 	window->Initialize("Test", 920, 780);
 	window->Startup();
+	return 0;
 }
