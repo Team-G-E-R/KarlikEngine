@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL3/SDL.h"
 #include "GraphicsBase.h"
+#include <string_view>
 
 class SDLWindow {
 public:
