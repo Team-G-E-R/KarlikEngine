@@ -1,6 +1,5 @@
 #pragma once
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_main.h>
+#include <SDL3/SDL.h>
 #include <memory>
 
 class GraphicsBase {

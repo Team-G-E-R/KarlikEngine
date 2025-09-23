@@ -2,6 +2,10 @@
   "name": "karlikengine",
   "version": "0.1.0",
   "dependencies": [
-    "sdl2"
+    "sdl3",
+	{
+		"name": "imgui",
+		"features": ["docking-experimental", "sdl3-binding"]
+	}
   ]
 }
