@@ -22,3 +22,7 @@ find_package(OpenGL REQUIRED)
 target_link_libraries(KarlikEngineCore PRIVATE OpenGL::GL)
 target_link_libraries(KarlikEngineCore PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/lib/glew32s.lib")
 target_include_directories(KarlikEngineCore PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+# Box2D
+find_package(Box2d REQUIRED)
+target_link_libraries(KarlikEngineCore PRIVATE box2d::box2d)
