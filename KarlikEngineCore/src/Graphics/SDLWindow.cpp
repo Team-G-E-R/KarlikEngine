@@ -9,7 +9,7 @@ void SDLWindow::Initialize(std::string_view name, int w, int h)
 
 	graphics->Initialize();
 
-	window = SDL_CreateWindow(name.data(), w, h, graphics->GetWindowFlag());
+	window = SDL_CreateWindow(name.data(), w, h, graphics->GetWindowFlag() | SDL_WINDOW_RESIZABLE);
 	if (window == nullptr) {
 		SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
 		return;
@@ -35,6 +35,7 @@ void SDLWindow::Run()
 
 	while (running) {
 		while (SDL_PollEvent(&event)) {
+			graphics->ProcessEvents(event);
 			if (event.type == SDL_EVENT_QUIT) {
 				running = false;
 			}
