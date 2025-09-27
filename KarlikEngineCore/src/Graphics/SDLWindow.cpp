@@ -7,6 +7,8 @@ void SDLWindow::Initialize(std::string_view name, int w, int h)
 		return;
 	}
 
+	InitializeGraphics();
+
 	graphics->Initialize();
 
 	window = SDL_CreateWindow(name.data(), w, h, graphics->GetWindowFlag() | SDL_WINDOW_RESIZABLE);
@@ -42,6 +44,7 @@ void SDLWindow::Run()
 			// etc...
 		}
 
+		OnUpdate();
 		graphics->Render();
 
 		frames++;

@@ -4,7 +4,6 @@
 
 class TestRenderPart : public ImGuiRenderPart {
 public:
-
 	void ShowDockSpace()
 	{
 		ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;

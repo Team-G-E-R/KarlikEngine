@@ -26,6 +26,8 @@ target_link_libraries(KarlikEngineCore PUBLIC SDL3::SDL3)
 find_package(OpenGL REQUIRED)
 target_link_libraries(KarlikEngineCore PUBLIC OpenGL::GL)
 target_link_libraries(KarlikEngineCore PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib/glew32s.lib")
+target_link_libraries(KarlikEngineCore PUBLIC debug "${CMAKE_CURRENT_SOURCE_DIR}/lib/Debug/Coral.Native.lib")
+target_link_libraries(KarlikEngineCore PUBLIC optimized "${CMAKE_CURRENT_SOURCE_DIR}/lib/Release/Coral.Native.lib")
 target_include_directories(KarlikEngineCore PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 #imgui

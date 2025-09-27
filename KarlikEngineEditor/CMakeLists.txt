@@ -10,6 +10,8 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SOURCES})
 
 add_executable(KarlikEngineEditor ${SOURCES})
+set_target_properties(KarlikEngineEditor PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
+
 target_precompile_headers(KarlikEngineEditor PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/pch.h")
 
 target_link_libraries(KarlikEngineEditor PRIVATE KarlikEngineCore)
