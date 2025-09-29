@@ -3,6 +3,6 @@
 
 class EditorWindow : public SDLWindow {
 protected:
-	void InitializeGraphics() override;
+	void PostInitialize() override;
 	void OnUpdate() override;
 };

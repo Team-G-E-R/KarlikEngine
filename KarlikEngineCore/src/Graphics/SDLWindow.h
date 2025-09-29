@@ -2,6 +2,7 @@
 #include "GraphicsBase.h"
 #include <string_view>
 #include <Runtime/Runtime.h>
+#include <Scripting/Scripting.h>
 
 class SDLWindow {
 public:
@@ -13,13 +14,14 @@ public:
 	void Close();
 
 protected:
-	virtual void InitializeGraphics() = 0;
+	virtual void PostInitialize() = 0;
 	virtual void OnUpdate() = 0;
 
 protected:
 	bool running = true;
 	std::unique_ptr<GraphicsBase> graphics = nullptr;
 	std::unique_ptr<Runtime> runtime = nullptr;
+	std::unique_ptr<Scripting> scripting = nullptr;
 	SDL_Window* window = nullptr;
 
 private:

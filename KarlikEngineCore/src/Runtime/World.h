@@ -6,7 +6,7 @@
 
 class World {
 public:
-	World(std::string_view uuid, std::string_view name) : uuid(uuid), name(name) {}
+	World(std::string uuid, std::string name) : uuid(std::move(uuid)), name(std::move(name)) {}
 	virtual ~World() = default;
 
 	WorldObject* CreateObject(std::string name = "");

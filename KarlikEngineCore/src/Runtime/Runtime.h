@@ -6,9 +6,12 @@
 
 class Runtime {
 public:
-	std::string CreateWorld(std::string_view name);
+	World* CreateWorld(const std::string& name = "");
+	void SetWorldActive(World* world);
+	World* GetWorldActive();
 	bool DestroyWorld(const std::string& uuid);
 	bool DestroyWorldByName(const std::string& name);
 private:
-	std::unordered_map<std::string, std::unique_ptr<World>> worlds;
+	std::unordered_map<std::string, std::unique_ptr<World>> worlds = std::unordered_map<std::string, std::unique_ptr<World>>();
+	World* activeWorld = nullptr;
 };

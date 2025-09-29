@@ -1,12 +1,23 @@
 #include "Runtime.h"
 #include "Utils/UUIDGenerator.h"
 
-std::string Runtime::CreateWorld(std::string_view name)
+World* Runtime::CreateWorld(const std::string& name)
 {
     std::string uuid = uuid_generator::generate_uuid_v4();
     std::unique_ptr<World> world = std::make_unique<World>(uuid, name);
+    World* rawWorld = world.get();
     worlds[uuid] = std::move(world);
-    return uuid;
+    return rawWorld;
+}
+
+void Runtime::SetWorldActive(World* world)
+{
+    activeWorld = world;
+}
+
+World* Runtime::GetWorldActive()
+{
+    return activeWorld;
 }
 
 bool Runtime::DestroyWorld(const std::string& uuid)

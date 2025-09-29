@@ -7,7 +7,7 @@ void SDLWindow::Initialize(std::string_view name, int w, int h)
 		return;
 	}
 
-	InitializeGraphics();
+	PostInitialize();
 
 	graphics->Initialize();
 

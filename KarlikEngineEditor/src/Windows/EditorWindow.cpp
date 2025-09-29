@@ -3,13 +3,9 @@
 #include "Graphics/ImGui/ImGuiOpenGLAddon.h"
 #include <Addon/AddonRegistry.h>
 #include "../ImGui/TestRenderPart.h"
+#include <Scripting/DotNetScripting.h>
 
-#include <Coral/HostInstance.hpp>
-#include <Coral/GC.hpp>
-#include <Coral/Array.hpp>
-#include <Coral/Attribute.hpp>
-
-void EditorWindow::InitializeGraphics()
+void EditorWindow::PostInitialize()
 {
 	graphics = std::make_unique<OpenGLGraphics>();
 	AddonRegistry::Instance().Create<ImGuiAddonBase>(graphics.get());
@@ -17,15 +13,18 @@ void EditorWindow::InitializeGraphics()
 	auto imgui = graphics->GetAddonRaw<ImGuiAddonBase>();
 	imgui->AddRenderPart(std::make_unique<TestRenderPart>());
 
-	Coral::HostSettings settings =
-	{
-		.CoralDirectory = "",
-		.ExceptionCallback = nullptr
-	};
-	Coral::HostInstance hostInstance;
-	hostInstance.Initialize(settings);
+	runtime = std::make_unique<Runtime>();
+	scripting = std::make_unique<DotNetScripting>();
+
+	World* world = runtime->CreateWorld();
+	runtime->SetWorldActive(world);
+
+	WorldObject* test = world->CreateObject("Test");
+	auto script = scripting->CreateScript("Test", test);
+	script.lock()->runInEditor = true;
 }
 
 void EditorWindow::OnUpdate()
 {
+	scripting->OnUpdate();
 }

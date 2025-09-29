@@ -7,11 +7,13 @@ class Script;
 class WorldObject
 {
 public:
-	WorldObject() = default;
-	WorldObject(const std::string uuid);
+	WorldObject(const std::string uuid, std::string name = "");
 	virtual ~WorldObject() = default;
 
 	const std::string& GetUUID() { return uuid; }
+
+public:
+	std::string name;
 
 private:
 	const std::string uuid;
