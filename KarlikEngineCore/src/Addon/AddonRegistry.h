@@ -31,6 +31,10 @@ public:
         }
     }
 
+    void Clear() {
+        factories.clear();
+    }
+
 private:
     std::unordered_map<std::type_index, FactoryFn> factories;
 };

@@ -26,6 +26,8 @@ DotNetScript::DotNetScript(const std::string& uuid, const std::string& name, Scr
 
 DotNetScript::~DotNetScript()
 {
+	DotNetCache::ClearCachedMethods();
+
 	if (instance.IsValid()) {
 		instance.Destroy();
 	}

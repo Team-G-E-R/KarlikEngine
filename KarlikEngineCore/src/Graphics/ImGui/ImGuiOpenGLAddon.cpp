@@ -1,6 +1,12 @@
 #include "ImGuiOpenGLAddon.h"
 #include "Graphics/OpenGLGraphics.h"
 
+ImGuiOpenGLAddon::~ImGuiOpenGLAddon()
+{
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplSDL3_Shutdown();
+}
+
 void ImGuiOpenGLAddon::Initialize()
 {
 	ImGuiAddonBase::Initialize();

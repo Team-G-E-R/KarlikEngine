@@ -6,7 +6,7 @@ class ImGuiOpenGLAddon : public ImGuiAddonBase
 {
 public:
 	ImGuiOpenGLAddon() {}
-	virtual ~ImGuiOpenGLAddon() = default;
+	~ImGuiOpenGLAddon();
 
 	void Initialize() override;
 

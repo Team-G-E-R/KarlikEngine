@@ -7,7 +7,8 @@
 
 class ImGuiAddonBase : public AddonBase {
 public:
-	ImGuiAddonBase() {}
+	ImGuiAddonBase() = default;
+	~ImGuiAddonBase();
 
 	virtual void Initialize() override;
 	void Render() override;

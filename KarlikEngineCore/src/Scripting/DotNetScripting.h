@@ -6,8 +6,11 @@
 class DotNetScripting : public Scripting {
 public:
 	DotNetScripting();
+	~DotNetScripting();
+
 	Coral::Type* GetTypeByName(const std::string& name);
 
+	void ClearAssembly();
 	void ReloadAssembly() override;
 
 	void OnUpdate() override;
@@ -21,5 +24,5 @@ private:
 	std::unordered_map<std::string, Coral::Type*> typesByNames;
 
 	Coral::HostInstance hostInstance;
-	std::unique_ptr<Coral::AssemblyLoadContext> loadContext; // keep current context
+	std::unique_ptr<Coral::AssemblyLoadContext> loadContext;
 };

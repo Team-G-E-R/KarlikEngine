@@ -14,8 +14,8 @@ enum class RendererType : uint8_t {
 
 class GraphicsBase {
 public:
-	GraphicsBase(RendererType type) : rendererType(type) {}
-	~GraphicsBase() = default;
+	GraphicsBase(RendererType type);
+	~GraphicsBase();
 
 	virtual void Initialize() = 0;
 	void Startup(SDL_Window* window);

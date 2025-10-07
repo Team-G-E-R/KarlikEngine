@@ -34,6 +34,13 @@ public:
         return &it->second;
     }
 
+    static void ClearCachedMethods() {
+        for (auto& classMethods : methodsByName) {
+            classMethods.second.names.clear();
+        }
+        methodsByName.clear();
+    }
+
 private:
     static inline std::unordered_map<std::string, MethodCache> methodsByName;
 };

@@ -23,6 +23,12 @@ DotNetScripting::DotNetScripting()
 	ReloadAssembly();
 }
 
+DotNetScripting::~DotNetScripting()
+{
+	ClearAssembly();
+	hostInstance.Shutdown();
+}
+
 std::shared_ptr<Script> DotNetScripting::CreateScriptProcess(const std::string& name, WorldObject* worldObject)
 {
 	std::shared_ptr<DotNetScript> script = std::make_shared<DotNetScript>(uuid_generator::generate_uuid_v4(), name, this, worldObject);
@@ -37,7 +43,7 @@ Coral::Type* DotNetScripting::GetTypeByName(const std::string& name)
 	return iter != typesByNames.end() ? iter->second : nullptr;
 }
 
-void DotNetScripting::ReloadAssembly()
+void DotNetScripting::ClearAssembly()
 {
 	scripts.clear();
 	scriptsToStart.clear();
@@ -49,9 +55,14 @@ void DotNetScripting::ReloadAssembly()
 		hostInstance.UnloadAssemblyLoadContext(*loadContext);
 		loadContext.reset();
 	}
+}
+
+void DotNetScripting::ReloadAssembly()
+{
+	ClearAssembly();
 
 	loadContext = std::make_unique<Coral::AssemblyLoadContext>(
-		hostInstance.CreateAssemblyLoadContext("MainContext")
+		hostInstance.CreateAssemblyLoadContext(uuid_generator::generate_uuid_v4())
 	);
 
 	const std::string assemblyPath = "KarlikEngineScriptingCore.dll";

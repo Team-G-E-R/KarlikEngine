@@ -1,5 +1,10 @@
 #include "ImGuiAddonBase.h"
 
+ImGuiAddonBase::~ImGuiAddonBase()
+{
+	ImGui::DestroyContext();
+}
+
 void ImGuiAddonBase::Initialize()
 {
 	// Setup Dear ImGui context

@@ -1,4 +1,14 @@
 #include "GraphicsBase.h"
+#include "Addon/BasicAddons.h"
+
+GraphicsBase::GraphicsBase(RendererType type) : rendererType(type) {
+	BasicAddons::InitializeAddons();
+}
+
+GraphicsBase::~GraphicsBase()
+{
+	AddonRegistry::Instance().Clear();
+}
 
 void GraphicsBase::Startup(SDL_Window* window)
 {
