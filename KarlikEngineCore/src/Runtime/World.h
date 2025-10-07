@@ -12,6 +12,7 @@ public:
 
 	WorldObject* CreateObject(std::string name = "");
 	WorldObject* GetObjectByName(const std::string& name);
+	const std::vector<std::unique_ptr<WorldObject>>& GetWorldObjects() const { return worldObjects; }
 
 public:
 	const std::string uuid;

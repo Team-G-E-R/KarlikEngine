@@ -1,4 +1,9 @@
 #include "ImGuiAddonBase.h"
+#include <Runtime/Runtime.h>
+
+ImGuiAddonBase::ImGuiAddonBase(Runtime* runtime) : runtime(runtime)
+{
+}
 
 ImGuiAddonBase::~ImGuiAddonBase()
 {
@@ -25,7 +30,7 @@ void ImGuiAddonBase::Render()
 	ImGui::NewFrame();
 
 	for (int i = 0; i < renderParts.size(); i++) {
-		renderParts[i]->Render();
+		renderParts[i]->Render(runtime, graphicsBase);
 	}
 
 	ImGui::Render();

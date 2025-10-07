@@ -5,9 +5,11 @@
 #include "ImGuiRenderPart.h"
 #include <imgui_impl_sdl3.h>
 
+class Runtime;
+
 class ImGuiAddonBase : public AddonBase {
 public:
-	ImGuiAddonBase() = default;
+	ImGuiAddonBase(Runtime* runtime);
 	~ImGuiAddonBase();
 
 	virtual void Initialize() override;
@@ -18,6 +20,7 @@ public:
 protected:
 	virtual void PreRender() = 0;
 	virtual void PostRender() = 0;
+	Runtime* runtime;
 
 protected:
 	std::vector<std::unique_ptr<ImGuiRenderPart>> renderParts;

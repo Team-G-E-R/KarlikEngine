@@ -1,6 +1,8 @@
 #include "ImGuiOpenGLAddon.h"
 #include "Graphics/OpenGLGraphics.h"
 
+ImGuiOpenGLAddon::ImGuiOpenGLAddon(Runtime* runtime) : ImGuiAddonBase(runtime) {}
+
 ImGuiOpenGLAddon::~ImGuiOpenGLAddon()
 {
 	ImGui_ImplOpenGL3_Shutdown();

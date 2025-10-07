@@ -2,10 +2,12 @@
 #include "ImGuiAddonBase.h"
 #include <imgui_impl_opengl3.h>
 
+class Runtime;
+
 class ImGuiOpenGLAddon : public ImGuiAddonBase
 {
 public:
-	ImGuiOpenGLAddon() {}
+	ImGuiOpenGLAddon(Runtime* runtime);
 	~ImGuiOpenGLAddon();
 
 	void Initialize() override;
