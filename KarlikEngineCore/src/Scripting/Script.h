@@ -13,10 +13,12 @@ public:
 	virtual void OnPhysicsUpdate() = 0;
 
 	bool runInEditor = false;
+	WorldObject* worldObject;
+
+	const std::string& GetName() const { return name; }
 
 private:
 	const std::string uuid;
 	const std::string name;
 	Scripting* scripting;
-	WorldObject* worldObject;
 };

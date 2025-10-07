@@ -13,18 +13,17 @@ void EditorWindow::PostInitialize()
 	auto imgui = graphics->GetAddonRaw<ImGuiAddonBase>();
 	imgui->AddRenderPart(std::make_unique<TestRenderPart>());
 
-	runtime = std::make_unique<Runtime>();
 	scripting = std::make_unique<DotNetScripting>();
+	runtime = std::make_unique<Runtime>(std::move(scripting));
 
 	World* world = runtime->CreateWorld();
-	runtime->SetWorldActive(world);
 
 	WorldObject* test = world->CreateObject("Test");
-	auto script = scripting->CreateScript("Test", test);
-	script.lock()->runInEditor = true;
+	auto script = test->CreateScript("Test");
+	script->runInEditor = true;
 }
 
 void EditorWindow::OnUpdate()
 {
-	scripting->OnUpdate();
+	runtime->OnUpdate();
 }

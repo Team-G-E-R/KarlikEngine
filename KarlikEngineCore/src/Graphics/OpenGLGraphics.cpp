@@ -32,7 +32,7 @@ void OpenGLGraphics::Startup()
 	printf("GLSL version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 	// 0 = disable VSync, 1 = enable VSync, -1 = late swap tearing if supported
-	SDL_GL_SetSwapInterval(0);
+	SDL_GL_SetSwapInterval(1);
 }
 
 void OpenGLGraphics::ProcessEvents(SDL_Event event)

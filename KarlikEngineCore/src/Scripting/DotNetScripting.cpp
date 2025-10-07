@@ -77,12 +77,6 @@ void DotNetScripting::OnUpdate()
 	for (auto& script : scripts) {
 		script->OnUpdate();
 	}
-	
-	i++;
-	if (i == 5000) {
-		ReloadAssembly();
-		i = 0;
-	}
 }
 
 void DotNetScripting::OnPhysicsUpdate()

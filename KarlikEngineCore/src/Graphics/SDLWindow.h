@@ -20,8 +20,6 @@ protected:
 protected:
 	bool running = true;
 	std::unique_ptr<GraphicsBase> graphics = nullptr;
-	std::unique_ptr<Runtime> runtime = nullptr;
-	std::unique_ptr<Scripting> scripting = nullptr;
 	SDL_Window* window = nullptr;
 
 private:

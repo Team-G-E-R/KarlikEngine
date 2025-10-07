@@ -6,7 +6,7 @@ class Scripting {
 public:
 	virtual ~Scripting() = default;
 
-	std::weak_ptr<Script> CreateScript(const std::string& name, WorldObject* worldObject);
+	std::shared_ptr<Script> CreateScript(const std::string& name, WorldObject* worldObject);
 	void RemoveScript(std::shared_ptr<Script> script);
 
 	virtual void ReloadAssembly() = 0; // Call this only if you cached all current variables and ready to make all scripts null

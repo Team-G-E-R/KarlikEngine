@@ -9,6 +9,8 @@ DotNetScript::DotNetScript(const std::string& uuid, const std::string& name, Scr
 
 	if (baseClass == nullptr) {
 		// Class not found
+
+		cachedMethods = nullptr;
 		return;
 	}
 
@@ -50,6 +52,6 @@ bool DotNetScript::HasMethod(const std::string& methodName) const {
 
 void DotNetScript::InvokeIfValid(std::string_view methodName)
 {
-	if (HasMethod(std::string(methodName)) && runInEditor)
+	if (cachedMethods != nullptr && HasMethod(std::string(methodName)) && runInEditor)
 		instance.InvokeMethod(std::string(methodName));
 }
